@@ -1,91 +1,80 @@
-<%= link_to 'Update Your Spotify Data', "/auth/spotify" %>
+<!-- <%= link_to 'Update Your Spotify Data', "/auth/spotify" %>              -->
+
+
+
+<%= link_to 'Update Your Spotify Data', "/auth/spotify", :class => "button btn btn-success" %>
 <% user_name_string = @current_user.username.capitalize.to_s %>
 <% user_name_string.concat("'s Spotify Profile ") %>
 <h1> <%= user_name_string %> </h1>
 
 
 
+ 
+<div class="row">
+  <div class="table-responsive col-md-6">
 
-
-
-<table align="center"><tr><td>
-
-<table id="top_artist_table" cellspacing="0" cellpadding="0">
-<% user_artist_images = UserTopArtistImage.where({:user_id => @current_user.id }).pluck(:image_url) %>
-<% array_of_arrays = user_artist_images.each_slice(3).to_a %>
-<% for image_array in array_of_arrays %>
+  <table id="top_artist_table" cellspacing="0" cellpadding="0">
+  <% user_artist_images = UserTopArtistImage.where({:user_id => @current_user.id }).pluck(:image_url) %>
+  <% array_of_arrays = user_artist_images.each_slice(3).to_a %>
+  <% for image_array in array_of_arrays %>
   <tr>
     <td> <img width = "250" src = "<%= image_array[0] %>"> </td>
     <td> <img width = "250" src = "<%= image_array[1] %>"> </td>
     <td> <img width = "250" src = "<%= image_array[2] %>"> </td>
   </tr>
  <% end %> 
-</table>
+  </table>
+</div>
 
-</td><td>
 
-<table >
-<% user_top_tracks = UserTopTrack.where({:user_id => @current_user.id }).pluck(:track_title, :track_artist, :track_preview_url) %>
-<% for track_array in user_top_tracks %>
+<div class="table-responsive col-md-6">
+  <table  class="table table-dark table-hover">
+  <% user_top_tracks = UserTopTrack.where({:user_id => @current_user.id }).pluck(:track_title, :track_artist, :track_preview_url) %>
+  <% for track_array in user_top_tracks %>
   <tr>
-    <td> <%= track_array[0] %> </td>
-    <td> <%= track_array[1] %> </td>
-    <td> <%= track_array[2] %> </td>  
+    <td class="text-center"> <%= track_array[0] %> </td>
+    <td class="text-center"> <%= track_array[1] %> </td>
+    <td class="text-center"> <audio controls> <source src= <%= track_array[2] %> type="audio/mp3">  </audio> </td>  
   </tr>
   <% end %> 
 </table>
-
-</td></tr></table>
-
-
+  </div>
+</div>
 
 
+<div class="container-fluid">
+    <!-- Control the column width, and how they should appear on different devices -->
+    <div class="row">
+      <div class="col-sm-6" style="background-color:yellow;">50%</div>
+      <div class="col-sm-6" style="background-color:orange;">50%</div>
+    </div>
+    <br>
+    
+    <div class="row">
+      <div class="col-sm-4" style="background-color:yellow;">33.33%</div>
+      <div class="col-sm-4" style="background-color:orange;">33.33%</div>
+      <div class="col-sm-4" style="background-color:yellow;">33.33%</div>
+    </div>
+    <br>
+
+    <!-- Or let Bootstrap automatically handle the layout -->
+    <div class="row">
+      <div class="col-sm" style="background-color:yellow;">25%</div>
+      <div class="col-sm" style="background-color:orange;">25%</div>
+      <div class="col-sm" style="background-color:yellow;">25%</div>
+      <div class="col-sm" style="background-color:orange;">25%</div>
+    </div>
+    <br>
+    
+    <div class="row">
+      <div class="col" style="background-color:yellow;">25%</div>
+      <div class="col" style="background-color:orange;">25%</div>
+      <div class="col" style="background-color:yellow;">25%</div>
+      <div class="col" style="background-color:orange;">25%</div>
+    </div>
+  </div>
+</div>
 
 
-<% user_artist_images = UserTopArtistImage.where({:user_id => @current_user.id }).pluck(:image_url) %>
-<% array_of_arrays = user_artist_images.each_slice(6).to_a %>
-<% for image_array in array_of_arrays %>
-
-   <table border=1 class="floatedTable">
-        <tr>
-            <td> <img width = "250" src = "<%= image_array[0] %>"> </td>
-            <td> <img width = "250" src = "<%= image_array[1] %>"> </td>
-            <td> <img width = "250" src = "<%= image_array[2] %>"> </td>
-        </tr>
-    </table>
-    <table border=1 class="floatedTable">
-        <tr>
-            <td> <img width = "250" src = "<%= image_array[3] %>"> </td>
-            <td> <img width = "250" src = "<%= image_array[4] %>"> </td>
-            <td> <img width = "250" src = "<%= image_array[5] %>"> </td>
-        </tr>
-    </table>
- <% end %> 
 
 
-<table cellspacing="0" cellpadding="0">
-<tr>
-  <th>
-      
-  </th>
-</tr>
-
-<% user_artist_images = UserTopArtistImage.where({:user_id => @current_user.id }).pluck(:image_url) %>
-<% array_of_arrays = user_artist_images.each_slice(6).to_a %>
-<% for image_array in array_of_arrays %>
-
-  <tr>
-    <td> <img width = "250" src = "<%= image_array[0] %>"> </td>
-    <td> <img width = "250" src = "<%= image_array[1] %>"> </td>
-    <td> <img width = "250" src = "<%= image_array[2] %>"> </td>
-    <td> <%= "Hello" %> </td>
-    <td> <%= "Hello" %> </td>
-    <td> <img width = "250" src = "<%= image_array[3] %>"> </td>
-    <td> <img width = "250" src = "<%= image_array[4] %>"> </td>
-    <td> <img width = "250" src = "<%= image_array[5] %>"> </td>
-
-  </tr>
-
- <% end %> 
-
-</table>

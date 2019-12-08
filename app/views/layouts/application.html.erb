@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome</title>
+
     <%= csrf_meta_tags %>
 
     <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
@@ -15,29 +15,20 @@
     <%= javascript_pack_tag 'application' %>
   </head>
 
+<div class="btn-group">
+  <a href="/sign_up" class="button btn btn-primary btn-sm" role="button">Sign Up</a>
+  <a href="/sign_out" class="button btn btn-primary btn-sm" role="button">Sign Out</a>
+  <a href="/sign_in" class="button btn btn-primary btn-sm" role="button">Sign In</a>
+</div>
+
   <body>
     <nav>
 
-      <div>
-        <a href="/sign_up">
-          Sign Up
-        </a>
-      </div>
-
-      <div>
-        <a href="/sign_out">
-          Sign Out
-        </a>
-      </div>
-
-      <div>
-        <a href="/sign_in">
-          Sign In
-        </a>
-      </div>
+      
 
     </nav>
     <%= yield %>
   </body>
 </html>
+
 
