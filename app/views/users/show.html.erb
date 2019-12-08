@@ -1,0 +1,91 @@
+<%= link_to 'Update Your Spotify Data', "/auth/spotify" %>
+<% user_name_string = @current_user.username.capitalize.to_s %>
+<% user_name_string.concat("'s Spotify Profile ") %>
+<h1> <%= user_name_string %> </h1>
+
+
+
+
+
+
+<table align="center"><tr><td>
+
+<table id="top_artist_table" cellspacing="0" cellpadding="0">
+<% user_artist_images = UserTopArtistImage.where({:user_id => @current_user.id }).pluck(:image_url) %>
+<% array_of_arrays = user_artist_images.each_slice(3).to_a %>
+<% for image_array in array_of_arrays %>
+  <tr>
+    <td> <img width = "250" src = "<%= image_array[0] %>"> </td>
+    <td> <img width = "250" src = "<%= image_array[1] %>"> </td>
+    <td> <img width = "250" src = "<%= image_array[2] %>"> </td>
+  </tr>
+ <% end %> 
+</table>
+
+</td><td>
+
+<table >
+<% user_top_tracks = UserTopTrack.where({:user_id => @current_user.id }).pluck(:track_title, :track_artist, :track_preview_url) %>
+<% for track_array in user_top_tracks %>
+  <tr>
+    <td> <%= track_array[0] %> </td>
+    <td> <%= track_array[1] %> </td>
+    <td> <%= track_array[2] %> </td>  
+  </tr>
+  <% end %> 
+</table>
+
+</td></tr></table>
+
+
+
+
+
+
+<% user_artist_images = UserTopArtistImage.where({:user_id => @current_user.id }).pluck(:image_url) %>
+<% array_of_arrays = user_artist_images.each_slice(6).to_a %>
+<% for image_array in array_of_arrays %>
+
+   <table border=1 class="floatedTable">
+        <tr>
+            <td> <img width = "250" src = "<%= image_array[0] %>"> </td>
+            <td> <img width = "250" src = "<%= image_array[1] %>"> </td>
+            <td> <img width = "250" src = "<%= image_array[2] %>"> </td>
+        </tr>
+    </table>
+    <table border=1 class="floatedTable">
+        <tr>
+            <td> <img width = "250" src = "<%= image_array[3] %>"> </td>
+            <td> <img width = "250" src = "<%= image_array[4] %>"> </td>
+            <td> <img width = "250" src = "<%= image_array[5] %>"> </td>
+        </tr>
+    </table>
+ <% end %> 
+
+
+<table cellspacing="0" cellpadding="0">
+<tr>
+  <th>
+      
+  </th>
+</tr>
+
+<% user_artist_images = UserTopArtistImage.where({:user_id => @current_user.id }).pluck(:image_url) %>
+<% array_of_arrays = user_artist_images.each_slice(6).to_a %>
+<% for image_array in array_of_arrays %>
+
+  <tr>
+    <td> <img width = "250" src = "<%= image_array[0] %>"> </td>
+    <td> <img width = "250" src = "<%= image_array[1] %>"> </td>
+    <td> <img width = "250" src = "<%= image_array[2] %>"> </td>
+    <td> <%= "Hello" %> </td>
+    <td> <%= "Hello" %> </td>
+    <td> <img width = "250" src = "<%= image_array[3] %>"> </td>
+    <td> <img width = "250" src = "<%= image_array[4] %>"> </td>
+    <td> <img width = "250" src = "<%= image_array[5] %>"> </td>
+
+  </tr>
+
+ <% end %> 
+
+</table>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FinalProject</title>
+    <title>Welcome</title>
     <%= csrf_meta_tags %>
 
     <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
@@ -16,6 +16,28 @@
   </head>
 
   <body>
+    <nav>
+
+      <div>
+        <a href="/sign_up">
+          Sign Up
+        </a>
+      </div>
+
+      <div>
+        <a href="/sign_out">
+          Sign Out
+        </a>
+      </div>
+
+      <div>
+        <a href="/sign_in">
+          Sign In
+        </a>
+      </div>
+
+    </nav>
     <%= yield %>
   </body>
 </html>
+

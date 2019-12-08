@@ -19,6 +19,9 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
+RSpotify::authenticate("0be76a7aaec342d8951b9d8ad7dda360", "3172b49d0283462eaf2e0937a6b02485")
+
 module FinalProject
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.

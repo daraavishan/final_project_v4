@@ -1,0 +1,10 @@
+<% if (@current_user != nil ) %>
+   <h1>Welcomeeee <%= @current_user.email %> </h1>
+  <%= link_to "Log Out", logout_path %>
+
+  <% else %>
+    <h1>Welcomeeee </h1>
+    <%= link_to "Sign Up", action = "/signup" %> 
+    <%= link_to "Log In", action = "/login" %>
+
+  <% end %>

@@ -1,0 +1,116 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      User top track #<%= @user_top_track.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/user_top_tracks" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_user_top_track/<%= @user_top_track.id %>" class="btn btn-block btn-outline-secondary">
+          Delete user top track
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @user_top_track.user_id %>
+      </dd>
+
+      <dt>
+        Track title
+      </dt>
+      <dd>
+        <%= @user_top_track.track_title %>
+      </dd>
+
+      <dt>
+        Track artist
+      </dt>
+      <dd>
+        <%= @user_top_track.track_artist %>
+      </dd>
+
+      <dt>
+        Track preview url
+      </dt>
+      <dd>
+        <%= @user_top_track.track_preview_url %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@user_top_track.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@user_top_track.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Edit user top track
+    </h2>
+
+    <form action="/modify_user_top_track/<%= @user_top_track.id %>"  method="post" >
+      <div class="form-group">
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="user_id_from_query" class="form-control" value="<%= @user_top_track.user_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="track_title_box">
+          Track title
+        </label>
+
+        <input type="text" id="track_title_box" name="track_title_from_query" class="form-control" value="<%= @user_top_track.track_title %>">
+      </div>
+
+      <div class="form-group">
+        <label for="track_artist_box">
+          Track artist
+        </label>
+
+        <input type="text" id="track_artist_box" name="track_artist_from_query" class="form-control" value="<%= @user_top_track.track_artist %>">
+      </div>
+
+      <div class="form-group">
+        <label for="track_preview_url_box">
+          Track preview url
+        </label>
+
+        <input type="text" id="track_preview_url_box" name="track_preview_url_from_query" class="form-control" value="<%= @user_top_track.track_preview_url %>">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update user top track
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

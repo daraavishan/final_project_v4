@@ -1,0 +1,102 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      List of all user top artist images
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Add a new user top artist image
+    </h2>
+
+    <form action="/insert_user_top_artist_image" method="post">
+      <div class="form-group">
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="user_id_from_query" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="image_url_box">
+          Image url
+        </label>
+
+        <input type="text" id="image_url_box" name="image_url_from_query" class="form-control">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Create user top artist image
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Image url
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @user_top_artist_images.each do |user_top_artist_image| %>
+      <tr>
+        <td>
+          <%= user_top_artist_image.id %>
+        </td>
+
+        <td>
+          <%= user_top_artist_image.user_id %>
+        </td>
+
+        <td>
+          <%= user_top_artist_image.image_url %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(user_top_artist_image.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(user_top_artist_image.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/user_top_artist_images/<%= user_top_artist_image.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

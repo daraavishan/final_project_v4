@@ -1,0 +1,30 @@
+
+
+  <table cellspacing="0" cellpadding="0">
+  <tr>
+    <th>
+      
+    </th>
+  </tr>
+
+ 
+<% array_of_arrays = @image_array.each_slice(6).to_a %>
+<% for image_array in array_of_arrays %>
+
+  <tr>
+    <td> <img width = "250" src = "<%= image_array[0] %>"> </td>
+    <td> <img width = "250" src = "<%= image_array[1] %>"> </td>
+    <td> <img width = "250" src = "<%= image_array[2] %>"> </td>
+    <td> <%= "Hello" %> </td>
+    <td> <%= "Hello" %> </td>
+    <td> <img width = "250" src = "<%= image_array[3] %>"> </td>
+    <td> <img width = "250" src = "<%= image_array[4] %>"> </td>
+    <td> <img width = "250" src = "<%= image_array[5] %>"> </td>
+
+  </tr>
+
+ <% end %> 
+
+</table>
+
+
