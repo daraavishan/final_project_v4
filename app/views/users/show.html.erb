@@ -1,43 +1,54 @@
 <!-- <%= link_to 'Update Your Spotify Data', "/auth/spotify" %>              -->
 
 
-
 <%= link_to 'Update Your Spotify Data', "/auth/spotify", :class => "button btn btn-success" %>
+
 <% user_name_string = @current_user.username.capitalize.to_s %>
 <% user_name_string.concat("'s Spotify Profile ") %>
-<h1> <%= user_name_string %> </h1>
 
-
-
- 
-<div class="row">
-  <div class="table-responsive col-md-6">
-
-  <table id="top_artist_table" cellspacing="0" cellpadding="0">
-  <% user_artist_images = UserTopArtistImage.where({:user_id => @current_user.id }).pluck(:image_url) %>
-  <% array_of_arrays = user_artist_images.each_slice(3).to_a %>
-  <% for image_array in array_of_arrays %>
-  <tr>
-    <td> <img width = "250" src = "<%= image_array[0] %>"> </td>
-    <td> <img width = "250" src = "<%= image_array[1] %>"> </td>
-    <td> <img width = "250" src = "<%= image_array[2] %>"> </td>
-  </tr>
- <% end %> 
-  </table>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1> <%= user_name_string %> </h1>
+  </div>
 </div>
 
 
-<div class="table-responsive col-md-6">
-  <table  class="table table-dark table-hover">
-  <% user_top_tracks = UserTopTrack.where({:user_id => @current_user.id }).pluck(:track_title, :track_artist, :track_preview_url) %>
-  <% for track_array in user_top_tracks %>
-  <tr>
-    <td class="text-center"> <%= track_array[0] %> </td>
-    <td class="text-center"> <%= track_array[1] %> </td>
-    <td class="text-center"> <audio controls> <source src= <%= track_array[2] %> type="audio/mp3">  </audio> </td>  
-  </tr>
-  <% end %> 
-</table>
+
+<div class="container-fluid">
+  <div class="row padding-0">
+    <div class="table-responsive col-md-6 padding-0 overflow-auto" style="height: 800px;">
+      <table class="table-responsive" cellspacing="0" cellpadding="0">
+        <% user_artist_images = UserTopArtistImage.where({:user_id => @current_user.id }).pluck(:image_url) %>
+        <% array_of_arrays = user_artist_images.each_slice(3).to_a %>
+        <% for image_array in array_of_arrays %>
+        <tr>
+          <td> <img width = "250" src = "<%= image_array[0] %>"> </td>
+          <td> <img width = "250" src = "<%= image_array[1] %>"> </td>
+          <td> <img width = "250" src = "<%= image_array[2] %>"> </td>
+        </tr>
+        <% end %> 
+      </table>
+    </div>
+
+    <div class="table-responsive col-md-6 padding-0 overflow-auto" style="height: 800px;">
+      <table class="table table-sm table-hover w-auto h-auto" >
+        <thead class="thead-dark" >
+          <tr>
+            <th class="text-center" scope="col"> Song</th>
+            <th class="text-center" scope="col"> Artist </th>
+            <th class="text-center" scope="col"> Preview </th>
+          </tr>
+        </thead>
+      <% user_top_tracks = UserTopTrack.where({:user_id => @current_user.id }).pluck(:track_title, :track_artist, :track_preview_url) %>
+      <% for track_array in user_top_tracks %>
+        <tr>
+          <td class="text-center"> <%= track_array[0] %> </td>
+          <td class="text-center"> <%= track_array[1] %> </td>
+          <td class="text-center"> <audio controls> <source src= <%= track_array[2] %> type="audio/mp3">  </audio> </td>  
+        </tr>
+        <% end %> 
+      </table>
+    </div>
   </div>
 </div>
 
