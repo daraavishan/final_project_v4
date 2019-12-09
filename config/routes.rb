@@ -1,26 +1,9 @@
 Rails.application.routes.draw do
 
-  # Routes for the Friend resource:
+ 
 
-  # CREATE
-  match("/insert_friend", { :controller => "friends", :action => "create", :via => "post"})
-          
-  # READ
-  match("/friends", { :controller => "friends", :action => "index", :via => "get"})
-  
-  match("/friends/:id_from_path", { :controller => "friends", :action => "show", :via => "get"})
-  
-  # UPDATE
-  
-  match("/modify_friend/:id_from_path", { :controller => "friends", :action => "update", :via => "post"})
-  
-  # DELETE
-  match("/delete_friend/:id_from_path", { :controller => "friends", :action => "destroy", :via => "get"})
-
-  #------------------------------
-
-    resources :users
-  # USER LOG IN STUFF #################################################################
+  resources :users
+  # USER ROUTES #################################################################
   #root "home#index"
   match("/", {:controller => "home", :action => "index", :via => "get"})
   
@@ -37,10 +20,6 @@ Rails.application.routes.draw do
   match("/users", {:controller => "users", :action => "index", :via => "get"})
   ######################################################################################
 
-  # POST-SIGN IN #################################################################
-  match("/log_in_confirmed", {:controller => "users", :action => "logged_in", :via => "get"})
-
-
   # SPOTIFY API ACTION #################################################################
   match("/spotify", {:controller => "homepage", :action => "homepage", :via => "get"})
   ######################################################################################
@@ -51,9 +30,22 @@ Rails.application.routes.draw do
 
   # AFTER SPOTIFY SIGN IN: ###############################################################
   get '/auth/spotify/callback', to: 'spotify#spotify_api_data'
-
-  #get '/auth/spotify/callback', to: 'users#spotify'
   ######################################################################################
+
+  # FRIEND ROUTES ###############################################################
+  match("/insert_friend", { :controller => "friends", :action => "create", :via => "post"})
+  ######################################################################################
+
+
+
+
+  # POST-SIGN IN #################################################################
+  #match("/log_in_confirmed", {:controller => "users", :action => "logged_in", :via => "get"})
+
+
+
+
+ 
   
   # Routes for the User top track resource:
 

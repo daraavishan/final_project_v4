@@ -1,21 +1,24 @@
-<!-- <%= link_to 'Update Your Spotify Data', "/auth/spotify" %>              -->
-
-
-<%= link_to 'Update Your Spotify Data', "/auth/spotify", :class => "button btn btn-success" %>
 
 <% user_name_string = @user_profile.username.capitalize.to_s %>
+<% follow_string = "Follow ".concat(user_name_string).concat('!') %>
+
+<div>
+<%= link_to 'Update Your Spotify Data', "/auth/spotify", :class => "button btn btn-success" %>
+</div>
+
+<% if @user_profile.id !=  @current_user.id %>
+<form action="/insert_friend" method="post">
+  <input id="user_profile_id" type = "hidden" name="user_profile_id" value = "<%= @user_profile.id %>" >
+  <button class="button btn btn-info"> <%=follow_string%> </button>
+</form>
+<% end %>
+
 <% user_name_string.concat("'s Spotify Profile ") %>
-
-
-
-
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1> <%= user_name_string %> </h1>
   </div>
 </div>
-
-
 
 <div class="container-fluid">
   <div class="row padding-0">

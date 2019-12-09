@@ -26,6 +26,8 @@ class SpotifyController < ApplicationController
     top_tracks_short = spotify_user.top_tracks(limit: 50, offset: 0, time_range: 'short_term') 
     top_tracks_short2 = spotify_user.top_tracks(limit: 50, offset: 49, time_range: 'short_term')
 
+    
+
     top_tracks_long = spotify_user.top_tracks(limit: 50, offset: 0, time_range: 'long_term')
     top_tracks_long2 = spotify_user.top_tracks(limit: 50, offset: 49, time_range: 'long_term')
 

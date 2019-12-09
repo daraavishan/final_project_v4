@@ -1,23 +1,15 @@
 class UsersController < ApplicationController
+  skip_before_action(:force_sign_in, { :only => [:registration_form, :session_form, :add_cookie, :create]})
+  skip_before_action(:user_profile_url, { :only => [:registration_form, :session_form, :add_cookie, :create]})
 
-  #Note this will get user_id
- # User ID: <%= session[:user_id]
+  #This will get user_id... session[:user_id]
 
 def show
   a = params
   the_username = params.fetch(:id)
   @user_profile = User.where({ :username => the_username }).at(0)
   render({ :template => "users/user_profile.html.erb" })
-
-    #respond_to do |format|
-    #format.json do
-      #render({ :json => @user.as_json })
-    #end
-
-    #format.html do
-      
-    #end
-  end
+end
 
   def index
     @users = User.all.order({ :username => :asc })
