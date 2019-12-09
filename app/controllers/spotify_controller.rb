@@ -4,6 +4,7 @@ class SpotifyController < ApplicationController
     
     #DEFINE THE SPOTIFY USER###########################################################################
     spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
+ 
     ###################################################################################################
 
     #USER TOP ARTISTS ##################################################################################
@@ -22,12 +23,7 @@ class SpotifyController < ApplicationController
     #######################################################################################################
  
 
-    # USER TOP TRACKS#######################################################################################
-    top_tracks_short = spotify_user.top_tracks(limit: 50, offset: 0, time_range: 'short_term') 
-    top_tracks_short2 = spotify_user.top_tracks(limit: 50, offset: 49, time_range: 'short_term')
-
-    
-
+    # USER TOP TRACKS (LONG TERM)#######################################################################################
     top_tracks_long = spotify_user.top_tracks(limit: 50, offset: 0, time_range: 'long_term')
     top_tracks_long2 = spotify_user.top_tracks(limit: 50, offset: 49, time_range: 'long_term')
 
@@ -48,6 +44,29 @@ class SpotifyController < ApplicationController
     @top_tracks_preview_long_term = track_preview
 
     top_tracks = @top_tracks_long_term.zip(@top_tracks_artists_long_term, @top_tracks_preview_long_term)
+    ############################################################################################################
+
+    # USER TOP TRACKS (SHORT TERM)#######################################################################################
+    top_tracks_short = spotify_user.top_tracks(limit: 50, offset: 0, time_range: 'short_term') 
+    top_tracks_short2 = spotify_user.top_tracks(limit: 50, offset: 49, time_range: 'short_term')
+
+    track_array_short = []
+    track_artist_array_short = []
+    track_preview_short = []
+    i = 0
+    while i < top_tracks_short.length
+
+      track_array_short.push(top_tracks_short[i].name || "")
+      track_artist_array_short.push(top_tracks_short[i].artists[0].name || "")
+      track_preview_short.push(top_tracks_short[i].preview_url || "")
+
+      i = i + 1
+    end 
+    @top_tracks_short_term = track_array_short
+    @top_tracks_artists_short_term = track_artist_array_short
+    @top_tracks_preview_short_term = track_preview_short
+
+    top_tracks_short = @top_tracks_short_term.zip(@top_tracks_artists_short_term, @top_tracks_preview_short_term)
     ############################################################################################################
 
     #LASTFM API LOOP FOR IMAGE URLS#################################################################### 
