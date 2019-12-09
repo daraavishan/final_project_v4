@@ -3,8 +3,11 @@
 
 <%= link_to 'Update Your Spotify Data', "/auth/spotify", :class => "button btn btn-success" %>
 
-<% user_name_string = @current_user.username.capitalize.to_s %>
+<% user_name_string = @user_profile.username.capitalize.to_s %>
 <% user_name_string.concat("'s Spotify Profile ") %>
+
+
+
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
@@ -18,7 +21,7 @@
   <div class="row padding-0">
     <div class="table-responsive col-md-6 padding-0 overflow-auto" style="height: 800px;">
       <table class="table-responsive" cellspacing="0" cellpadding="0">
-        <% user_artist_images = UserTopArtistImage.where({:user_id => @current_user.id }).pluck(:image_url) %>
+        <% user_artist_images = UserTopArtistImage.where({:user_id => @user_profile.id }).pluck(:image_url) %>
         <% array_of_arrays = user_artist_images.each_slice(3).to_a %>
         <% for image_array in array_of_arrays %>
         <tr>
@@ -39,7 +42,7 @@
             <th class="text-center" scope="col"> Preview </th>
           </tr>
         </thead>
-      <% user_top_tracks = UserTopTrack.where({:user_id => @current_user.id }).pluck(:track_title, :track_artist, :track_preview_url) %>
+      <% user_top_tracks = UserTopTrack.where({:user_id => @user_profile.id }).pluck(:track_title, :track_artist, :track_preview_url) %>
       <% for track_array in user_top_tracks %>
         <tr>
           <td class="text-center"> <%= track_array[0] %> </td>
@@ -52,39 +55,6 @@
   </div>
 </div>
 
-
-<div class="container-fluid">
-    <!-- Control the column width, and how they should appear on different devices -->
-    <div class="row">
-      <div class="col-sm-6" style="background-color:yellow;">50%</div>
-      <div class="col-sm-6" style="background-color:orange;">50%</div>
-    </div>
-    <br>
-    
-    <div class="row">
-      <div class="col-sm-4" style="background-color:yellow;">33.33%</div>
-      <div class="col-sm-4" style="background-color:orange;">33.33%</div>
-      <div class="col-sm-4" style="background-color:yellow;">33.33%</div>
-    </div>
-    <br>
-
-    <!-- Or let Bootstrap automatically handle the layout -->
-    <div class="row">
-      <div class="col-sm" style="background-color:yellow;">25%</div>
-      <div class="col-sm" style="background-color:orange;">25%</div>
-      <div class="col-sm" style="background-color:yellow;">25%</div>
-      <div class="col-sm" style="background-color:orange;">25%</div>
-    </div>
-    <br>
-    
-    <div class="row">
-      <div class="col" style="background-color:yellow;">25%</div>
-      <div class="col" style="background-color:orange;">25%</div>
-      <div class="col" style="background-color:yellow;">25%</div>
-      <div class="col" style="background-color:orange;">25%</div>
-    </div>
-  </div>
-</div>
 
 
 

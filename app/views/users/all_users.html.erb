@@ -1,0 +1,27 @@
+<div class="jumbotron text-center bg-dark text-white">
+  <h1>All Users</h1>
+  <p></p> 
+</div>
+
+
+<div class="d-flex justify-content-center">
+  <div class="row">
+    <div class="table-responsive overflow-auto" style="height: 800px;">
+      <table class="table table-sm table-hover w-auto h-auto">
+        <thead class="thead-dark" >
+          <tr>
+            <th class="text-center" scope="col">Username</th>
+            <th class="text-center" scope="col">Profile</th>
+          </tr>
+        </thead>
+        <% for user in @users %>
+        <tr>
+          <td class="text-center"> <%=user.username.capitalize%> </td>
+          <td class="text-center"> <a href="/users/<%= user.username %>">Profile</a> </td>
+        </tr>
+        <% end %> 
+      </table>
+    </div>
+  </div>
+</div>
+

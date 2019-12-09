@@ -1,5 +1,24 @@
 Rails.application.routes.draw do
 
+  # Routes for the Friend resource:
+
+  # CREATE
+  match("/insert_friend", { :controller => "friends", :action => "create", :via => "post"})
+          
+  # READ
+  match("/friends", { :controller => "friends", :action => "index", :via => "get"})
+  
+  match("/friends/:id_from_path", { :controller => "friends", :action => "show", :via => "get"})
+  
+  # UPDATE
+  
+  match("/modify_friend/:id_from_path", { :controller => "friends", :action => "update", :via => "post"})
+  
+  # DELETE
+  match("/delete_friend/:id_from_path", { :controller => "friends", :action => "destroy", :via => "get"})
+
+  #------------------------------
+
     resources :users
   # USER LOG IN STUFF #################################################################
   #root "home#index"
@@ -13,6 +32,9 @@ Rails.application.routes.draw do
   # CREATE USER RECORD
   match("/insert_user_record", {:controller => "users", :action => "create", :via => "post"})
   match("/users/:the_username", {:controller => "users", :action => "show", :via => "get"})
+
+  # ALL USERS
+  match("/users", {:controller => "users", :action => "index", :via => "get"})
   ######################################################################################
 
   # POST-SIGN IN #################################################################

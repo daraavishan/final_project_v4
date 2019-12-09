@@ -3,6 +3,27 @@ class UsersController < ApplicationController
   #Note this will get user_id
  # User ID: <%= session[:user_id]
 
+def show
+  a = params
+  the_username = params.fetch(:id)
+  @user_profile = User.where({ :username => the_username }).at(0)
+  render({ :template => "users/user_profile.html.erb" })
+
+    #respond_to do |format|
+    #format.json do
+      #render({ :json => @user.as_json })
+    #end
+
+    #format.html do
+      
+    #end
+  end
+
+  def index
+    @users = User.all.order({ :username => :asc })
+    render("users/all_users.html.erb")
+  end 
+
   def registration_form
     render("users/sign_up_form.html.erb")
   end 
@@ -24,9 +45,9 @@ def add_cookie
     if the_user != nil
       they_are_real = the_user.authenticate(the_supplied_password)
 
-
       if they_are_real == false
         redirect_to("/sign_in")
+
       else 
         session[:user_id] = the_user.id
         current_user = User.where({ :id => session[:user_id] }).at(0)
@@ -34,8 +55,8 @@ def add_cookie
         redirect_url_string = "/users/"
         redirect_url_string.concat(username_string)
         redirect_to(redirect_url_string)
-        
       end
+
     else 
       redirect_to("/sign_in")
     end
@@ -47,13 +68,11 @@ end
 
     user.username = params.fetch(:input_username, nil)
     user.password = params.fetch(:input_password)
-    #user.password_digest = params.fetch(:input_password)
     user.password_confirmation = params.fetch(:input_password_confirmation)
     
     user.save
     save_status = user.save
     
-
     if save_status == true 
       
       session[:user_id] = user.id  # this actually signs in the user
@@ -70,22 +89,12 @@ end
     else 
       redirect_to("/sign_up", {alert => "something went wrong"})
     end
-
   end
+
+
+
+
 end
 
-def show
 
-    the_username = params.fetch(:username, nil)
-    @user = User.where({ :username => the_username }).at(0)
 
-    respond_to do |format|
-      format.json do
-        render({ :json => @user.as_json })
-      end
-
-      format.html do
-        render({ :template => "users/show.html.erb" })
-      end
-    end
-  end
