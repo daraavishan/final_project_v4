@@ -106,9 +106,22 @@ class SpotifyController < ApplicationController
 
     # DESTROY USERS TOP TRACKS##################################################################
     UserTopTrack.where(:user_id => @current_user.id).destroy_all
-    #SAVE USERS TOP ARTIST IMAGE URLS#######################################################################
+    #SAVE USERS TOP TRACKS#######################################################################
     for track in top_tracks do
       user_top_track = UserTopTrack.new
+      user_top_track.user_id = @current_user.id
+      user_top_track.track_title = track[0]
+      user_top_track.track_artist = track[1]
+      user_top_track.track_preview_url = track[2]
+      user_top_track.save
+    end
+    #########################################################################################################
+
+    # DESTROY USERS TOP TRACKS (SHORT)##################################################################
+    UserTopTracksShort.where(:user_id => @current_user.id).destroy_all
+    #SAVE USERS TOP TRACKS#######################################################################
+    for track in top_tracks_short do
+      user_top_track = UserTopTracksShort.new
       user_top_track.user_id = @current_user.id
       user_top_track.track_title = track[0]
       user_top_track.track_artist = track[1]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_08_224047) do
+ActiveRecord::Schema.define(version: 2019_12_09_055229) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(version: 2019_12_08_224047) do
   end
 
   create_table "user_top_tracks", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "track_title"
+    t.string "track_artist"
+    t.string "track_preview_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_top_tracks_shorts", force: :cascade do |t|
     t.integer "user_id"
     t.string "track_title"
     t.string "track_artist"

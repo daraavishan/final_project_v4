@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
  
 
+  # Routes for the User top tracks short resource:
+
+  # CREATE
+  match("/insert_user_top_tracks_short", { :controller => "user_top_tracks_shorts", :action => "create", :via => "post"})
+          
+  # READ
+  match("/user_top_tracks_shorts", { :controller => "user_top_tracks_shorts", :action => "index", :via => "get"})
+  
+  match("/user_top_tracks_shorts/:id_from_path", { :controller => "user_top_tracks_shorts", :action => "show", :via => "get"})
+  
+  # UPDATE
+  
+  match("/modify_user_top_tracks_short/:id_from_path", { :controller => "user_top_tracks_shorts", :action => "update", :via => "post"})
+  
+  # DELETE
+  match("/delete_user_top_tracks_short/:id_from_path", { :controller => "user_top_tracks_shorts", :action => "destroy", :via => "get"})
+
+  #------------------------------
+
   resources :users
   # USER ROUTES #################################################################
   #root "home#index"
