@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_055229) do
+ActiveRecord::Schema.define(version: 2019_12_10_060443) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_055229) do
     t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "artist"
   end
 
   create_table "user_top_tracks", force: :cascade do |t|

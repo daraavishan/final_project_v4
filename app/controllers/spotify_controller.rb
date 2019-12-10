@@ -8,7 +8,7 @@ class SpotifyController < ApplicationController
     ###################################################################################################
 
     #USER TOP ARTISTS ##################################################################################
-    top_artists = spotify_user.top_artists(limit: 50, offset: 0, time_range: 'medium_term') 
+    top_artists = spotify_user.top_artists(limit: 49, offset: 0, time_range: 'medium_term') 
     top_artists2 = spotify_user.top_artists(limit: 50, offset: 49, time_range: 'medium_term') 
 
     artist_array = []
@@ -21,6 +21,21 @@ class SpotifyController < ApplicationController
     end 
     artist_array = artist_array + artist_array2
     #######################################################################################################
+
+
+    #USER TOP ARTISTS ALBUM IMAGES #########################################################################
+    artist_photo_array = []
+    for artist in top_artists do
+      top_tracks = artist.top_tracks(:US)
+      artist_photo_array.push(top_tracks[0].album.images[0]["url"])
+    end 
+    for artist in top_artists2 do
+      top_tracks = artist.top_tracks(:US)
+      artist_photo_array.push(top_tracks[0].album.images[0]["url"])
+    end 
+    @artist_and_image_array = artist_array.zip(artist_photo_array)
+
+    #######################################################################################################  
  
 
     # USER TOP TRACKS (LONG TERM)#######################################################################################
@@ -47,8 +62,8 @@ class SpotifyController < ApplicationController
     ############################################################################################################
 
     # USER TOP TRACKS (SHORT TERM)#######################################################################################
-    top_tracks_short = spotify_user.top_tracks(limit: 50, offset: 0, time_range: 'short_term') 
-    top_tracks_short2 = spotify_user.top_tracks(limit: 50, offset: 49, time_range: 'short_term')
+    top_tracks_short = spotify_user.top_tracks(limit: 50, offset: 0, time_range: 'medium_term') 
+    top_tracks_short2 = spotify_user.top_tracks(limit: 50, offset: 49, time_range: 'medium_term')
 
     track_array_short = []
     track_artist_array_short = []
@@ -69,37 +84,41 @@ class SpotifyController < ApplicationController
     top_tracks_short = @top_tracks_short_term.zip(@top_tracks_artists_short_term, @top_tracks_preview_short_term)
     ############################################################################################################
 
+
     #LASTFM API LOOP FOR IMAGE URLS#################################################################### 
-    artist_photo_array = []
-    for artist in artist_array do
+    # artist_photo_array = []
+    # for artist in artist_array do
 
-    require 'net/http'
-    uri = URI('http://ws.audioscrobbler.com/2.0/')
-    params = {:artist => artist, :format => 'json', :api_key => 'f209beb683775f51dfc9fc87dca5d742', :method => 'artist.gettopalbums' }
-    uri.query = URI.encode_www_form(params)
+    # require 'net/http'
+    # uri = URI('http://ws.audioscrobbler.com/2.0/')
+    # params = {:artist => artist, :format => 'json', :api_key => 'f209beb683775f51dfc9fc87dca5d742', :method => 'artist.gettopalbums' }
+    # uri.query = URI.encode_www_form(params)
 
-    req = Net::HTTP::Get.new(uri)
-    req['USER_AGENT'] = "Dataquest"
-    res = Net::HTTP.start(uri.hostname, uri.port) {|http|
-    http.request(req)
-        }
-    body = res.body 
-    body_parse = JSON.parse(body)
-    body_parse = body_parse['topalbums']['album'][0]['image'][3]['#text']
-    artist_photo_array.push(body_parse)
-    end
+    # req = Net::HTTP::Get.new(uri)
+    # req['USER_AGENT'] = "Dataquest"
+    # res = Net::HTTP.start(uri.hostname, uri.port) {|http|
+    # http.request(req)
+        # }
+    # body = res.body 
+    # body_parse = JSON.parse(body)
+    # body_parse = body_parse['topalbums']['album'][0]['image'][3]['#text']
+    # artist_photo_array.push(body_parse)
+    # end
     
-    artist_photo_array = artist_photo_array.reject { |c| c.empty? }
-    @image_array = artist_photo_array
+    # artist_photo_array = artist_photo_array.reject { |c| c.empty? }
+    # @image_array = artist_photo_array
     ########################################################################################################
+
+    
 
     # DESTROY USERS TOP ARTISTS IMAGE URLS##################################################################
     UserTopArtistImage.where(:user_id => @current_user.id).destroy_all
     #SAVE USERS TOP ARTIST IMAGE URLS#######################################################################
-    for image_url in @image_array do
+    for artist in @artist_and_image_array do
       user_top_artist_image = UserTopArtistImage.new
       user_top_artist_image.user_id = @current_user.id
-      user_top_artist_image.image_url = image_url
+      user_top_artist_image.artist = artist[0]
+      user_top_artist_image.image_url = artist[1]
       user_top_artist_image.save
     end
     #########################################################################################################
@@ -129,6 +148,7 @@ class SpotifyController < ApplicationController
       user_top_track.save
     end
     #########################################################################################################
+
    
 
     #LOAD USER PAGE###################################################################
