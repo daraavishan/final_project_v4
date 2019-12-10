@@ -8,8 +8,8 @@ class SpotifyController < ApplicationController
     ###################################################################################################
 
     #USER TOP ARTISTS ##################################################################################
-    top_artists = spotify_user.top_artists(limit: 49, offset: 0, time_range: 'medium_term') 
-    top_artists2 = spotify_user.top_artists(limit: 50, offset: 49, time_range: 'medium_term') 
+    top_artists = spotify_user.top_artists(limit: 49, offset: 0, time_range: 'long_term') 
+    top_artists2 = spotify_user.top_artists(limit: 50, offset: 49, time_range: 'long_term') 
 
     artist_array = []
     artist_array2 = []
