@@ -29,17 +29,17 @@
 <div class="d-flex bd-highlight">
   <div>
     <div class="btn-group">
-      <a href="/sign_up" class="button btn btn-primary btn-sm" role="button">Sign Up</a>
-      <a href="/sign_out" class="button btn btn-primary btn-sm" role="button">Sign Out</a>
-      <a href="/sign_in" class="button btn btn-primary btn-sm" role="button">Sign In</a>
-      <a href="/users" class="button btn btn-primary btn-sm" role="button">All Users</a>
+      <a href="/sign_up" class="button btn btn-black btn-sm" role="button">Sign Up</a>
+      <a href="/sign_out" class="button btn btn-black btn-sm" role="button">Sign Out</a>
+      <a href="/sign_in" class="button btn btn-black btn-sm" role="button">Sign In</a>
+      <a href="/users" class="button btn btn-black btn-sm" role="button">All Users</a>
     </div>
   </div>
   <div class="ml-auto">
     <% if @current_user != nil %>
-    <a href= <%= user_url_string %> class="button btn btn-primary btn-sm" role="button"> Signed In As <%= username_string.capitalize %> </a>
+    <a href= <%= user_url_string %> class="button btn btn-black btn-sm" role="button"> Signed In As <%= username_string.capitalize %> </a>
     <% else %>
-    <a href= <%= user_url_string %> class="button btn btn-primary btn-sm" role="button"> You Are Not Signed In </a>
+    <a href= <%= user_url_string %> class="button btn btn-black btn-sm" role="button"> You Are Not Signed In </a>
     <% end %>
   </div>
 </div>
