@@ -4,6 +4,7 @@ class SpotifyController < ApplicationController
     
     #DEFINE THE SPOTIFY USER###########################################################################
     spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
+    @spotify_user_hash = spotify_user.to_hash
  
     ###################################################################################################
 

@@ -1,26 +1,5 @@
 Rails.application.routes.draw do
 
- 
-
-  # Routes for the User top tracks short resource:
-
-  # CREATE
-  match("/insert_user_top_tracks_short", { :controller => "user_top_tracks_shorts", :action => "create", :via => "post"})
-          
-  # READ
-  match("/user_top_tracks_shorts", { :controller => "user_top_tracks_shorts", :action => "index", :via => "get"})
-  
-  match("/user_top_tracks_shorts/:id_from_path", { :controller => "user_top_tracks_shorts", :action => "show", :via => "get"})
-  
-  # UPDATE
-  
-  match("/modify_user_top_tracks_short/:id_from_path", { :controller => "user_top_tracks_shorts", :action => "update", :via => "post"})
-  
-  # DELETE
-  match("/delete_user_top_tracks_short/:id_from_path", { :controller => "user_top_tracks_shorts", :action => "destroy", :via => "get"})
-
-  #------------------------------
-
   resources :users
   # USER ROUTES #################################################################
   #root "home#index"
@@ -40,7 +19,7 @@ Rails.application.routes.draw do
   ######################################################################################
 
   # SPOTIFY API ACTION #################################################################
-  match("/spotify", {:controller => "homepage", :action => "homepage", :via => "get"})
+  #match("/spotify", {:controller => "homepage", :action => "homepage", :via => "get"})
   ######################################################################################
 
   # LAST FM API ACTION ##################################################################
@@ -56,51 +35,60 @@ Rails.application.routes.draw do
   ######################################################################################
 
 
+  # Routes for the User top tracks short resource:
 
+  # CREATE
+  #match("/insert_user_top_tracks_short", { :controller => "user_top_tracks_shorts", :action => "create", :via => "post"})
+          
+  # READ
+  #match("/user_top_tracks_shorts", { :controller => "user_top_tracks_shorts", :action => "index", :via => "get"})
+  
+  #match("/user_top_tracks_shorts/:id_from_path", { :controller => "user_top_tracks_shorts", :action => "show", :via => "get"})
+  
+  # UPDATE
+  
+  #match("/modify_user_top_tracks_short/:id_from_path", { :controller => "user_top_tracks_shorts", :action => "update", :via => "post"})
+  
+  # DELETE
+  #match("/delete_user_top_tracks_short/:id_from_path", { :controller => "user_top_tracks_shorts", :action => "destroy", :via => "get"})
 
-  # POST-SIGN IN #################################################################
-  #match("/log_in_confirmed", {:controller => "users", :action => "logged_in", :via => "get"})
-
-
-
-
- 
+  #------------------------------
   
   # Routes for the User top track resource:
 
   # CREATE
-  match("/insert_user_top_track", { :controller => "user_top_tracks", :action => "create", :via => "post"})
+  #match("/insert_user_top_track", { :controller => "user_top_tracks", :action => "create", :via => "post"})
           
   # READ
-  match("/user_top_tracks", { :controller => "user_top_tracks", :action => "index", :via => "get"})
+  #match("/user_top_tracks", { :controller => "user_top_tracks", :action => "index", :via => "get"})
   
-  match("/user_top_tracks/:id_from_path", { :controller => "user_top_tracks", :action => "show", :via => "get"})
+  #match("/user_top_tracks/:id_from_path", { :controller => "user_top_tracks", :action => "show", :via => "get"})
   
   # UPDATE
   
-  match("/modify_user_top_track/:id_from_path", { :controller => "user_top_tracks", :action => "update", :via => "post"})
+  #match("/modify_user_top_track/:id_from_path", { :controller => "user_top_tracks", :action => "update", :via => "post"})
   
   # DELETE
-  match("/delete_user_top_track/:id_from_path", { :controller => "user_top_tracks", :action => "destroy", :via => "get"})
+  #match("/delete_user_top_track/:id_from_path", { :controller => "user_top_tracks", :action => "destroy", :via => "get"})
 
   #------------------------------
 
   # Routes for the User top artist image resource:
 
   # CREATE
-  match("/insert_user_top_artist_image", { :controller => "user_top_artist_images", :action => "create", :via => "post"})
+  #match("/insert_user_top_artist_image", { :controller => "user_top_artist_images", :action => "create", :via => "post"})
           
   # READ
-  match("/user_top_artist_images", { :controller => "user_top_artist_images", :action => "index", :via => "get"})
+  #match("/user_top_artist_images", { :controller => "user_top_artist_images", :action => "index", :via => "get"})
   
-  match("/user_top_artist_images/:id_from_path", { :controller => "user_top_artist_images", :action => "show", :via => "get"})
+  #match("/user_top_artist_images/:id_from_path", { :controller => "user_top_artist_images", :action => "show", :via => "get"})
   
   # UPDATE
   
-  match("/modify_user_top_artist_image/:id_from_path", { :controller => "user_top_artist_images", :action => "update", :via => "post"})
+  #match("/modify_user_top_artist_image/:id_from_path", { :controller => "user_top_artist_images", :action => "update", :via => "post"})
   
   # DELETE
-  match("/delete_user_top_artist_image/:id_from_path", { :controller => "user_top_artist_images", :action => "destroy", :via => "get"})
+  #match("/delete_user_top_artist_image/:id_from_path", { :controller => "user_top_artist_images", :action => "destroy", :via => "get"})
 
   #------------------------------
 
